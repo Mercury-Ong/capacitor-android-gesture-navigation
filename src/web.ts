@@ -1,7 +1,7 @@
 import { WebPlugin } from "@capacitor/core";
 import type { GestureNavigationPlugin, NavigationMode } from "./definitions";
 
-/** Web and iOS: no navigation buttons to manage, so every call is a no-op. */
+/** Web: no system bars to manage, so every call is a no-op. */
 export class GestureNavigationWeb
   extends WebPlugin
   implements GestureNavigationPlugin

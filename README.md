@@ -1,6 +1,6 @@
 # capacitor-android-gesture-navigation
 
-Keeps Android's status bar and navigation buttons readable in edge-to-edge Capacitor apps, and tells your app whether the user navigates with gestures or buttons.
+Keeps the status bar (Android and iOS) and Android's navigation buttons readable in edge-to-edge Capacitor apps, and tells your app whether the user navigates with gestures or buttons.
 
 ## The problem
 
@@ -59,7 +59,7 @@ If another plugin also sets the bar style (for example `@capacitor/status-bar` o
 
 | Method | Description |
 |---|---|
-| `getMode()` | `{ mode: "gesture" \| "buttons" }`. Web and iOS resolve `gesture`. |
+| `getMode()` | `{ mode: "gesture" \| "buttons" }`. iOS and the web resolve `gesture`. |
 | `setStyle({ buttons })` | Navigation button colour by hand: `"dark"` over light backgrounds, `"light"` over dark ones. |
 | `startAutoStyle({ interval? })` | Samples the screen edges and styles both bars. `interval` in ms, default 250, minimum 100. |
 | `stopAutoStyle()` | Stops sampling; the bars keep their last style. |
@@ -68,15 +68,17 @@ If another plugin also sets the bar style (for example `@capacitor/status-bar` o
 
 ## Tested devices
 
-| Phone | Android | Navigation | Capacitor | Result | Date |
+| Phone | OS | Navigation | Capacitor | Result | Date |
 |---|---|---|---|---|---|
-| Samsung Galaxy A36 5G (SM-A366B) | 16 | 3-button | 8.4 | ✅ Works | 2026-11-18 |
+| Samsung Galaxy A36 5G (SM-A366B) | Android 16 | 3-button | 8.4 | ✅ Works | 2026-11-18 |
+| iPhone 13 | iOS 26.7 | Home indicator | 8.4 | ✅ Works | 2026-11-18 |
 
-Measured on that phone: white buttons on a blue screen 10.0:1, grey buttons on a white screen 4.2:1 (Android draws "dark" navigation buttons as grey), status bar icons 9.5–11.6:1.
+Measured on the Samsung: white buttons on a blue screen 10.0:1, grey buttons on a white screen 4.2:1 (Android draws "dark" navigation buttons as grey), status bar icons 9.5–11.6:1. On the iPhone: status bar icons 20:1 on a light photo, 13:1 on a blue screen.
 
 ## Notes
 
-- Android only for now. On iOS and the web every call is a no-op, so you can call it unconditionally. iOS status bar support is planned.
+- **iOS:** auto style covers the status bar (iOS has no navigation buttons): it samples a small thumbnail of the app's window under the status bar and sets the bridge's status bar style. `toneChange` fires as on Android. Needs `UIViewControllerBasedStatusBarAppearance` = YES (the Capacitor default). Installs with CocoaPods or Swift Package Manager.
+- **Web:** every call is a no-op, so you can call it unconditionally.
 - Android draws the button colours; the plugin only chooses between its light and dark variants.
 
 ## License

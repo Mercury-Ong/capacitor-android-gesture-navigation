@@ -1,13 +1,16 @@
 {
   "name": "capacitor-android-gesture-navigation",
-  "version": "0.1.0",
-  "description": "Capacitor plugin for Android: detects gesture vs button navigation and keeps the status and navigation bar icons readable by sampling what is on screen.",
+  "version": "0.2.0",
+  "description": "Capacitor plugin that keeps status and navigation bar icons readable by sampling what is on screen, and detects Android gesture vs button navigation.",
   "main": "dist/esm/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
   "files": [
     "android/src/main/",
     "android/build.gradle",
+    "ios/Sources/",
+    "Package.swift",
+    "CapacitorAndroidGestureNavigation.podspec",
     "dist/"
   ],
   "author": "Mercury Ong",
@@ -23,6 +26,7 @@
     "capacitor",
     "plugin",
     "android",
+    "ios",
     "navigation bar",
     "gesture navigation",
     "status bar",
@@ -40,6 +44,9 @@
     "@capacitor/core": ">=8.0.0"
   },
   "capacitor": {
+    "ios": {
+      "src": "ios"
+    },
     "android": {
       "src": "android"
     }

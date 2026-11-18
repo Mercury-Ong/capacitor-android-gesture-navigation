@@ -5,7 +5,7 @@ const web = () => import("./web").then((m) => new m.GestureNavigationWeb());
 
 export const GestureNavigation = registerPlugin<GestureNavigationPlugin>(
   "GestureNavigation",
-  { web, ios: web }
+  { web }
 );
 
 export * from "./definitions";
